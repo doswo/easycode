@@ -1,0 +1,178 @@
+#include <stdio.h>
+#include <stdlib.h>
+//某人三天打渔两天晒网，假设他从1990年1月1日开始打渔三天，然后晒网两天，请编程回答任意的一天他在打渔还是晒网。
+//一个男孩工作3天，而请假2天。如果他在1990年1月1日工作，那么对于通过键盘输入的日期，请编写一个程序来确定男孩在做什么，工作或休息？
+//输入和输出示例：
+//1）输入
+//1990-01-05
+//输出：
+//他正在休息。
+//2）输入：
+//1990-01-07
+//输出：
+//他正在工作。
+//3）输入：
+//1990-01-33
+//输出：
+//输入无效。
+//***输入数据格式***：“％4d-％2d-％2d”
+//***输出数据格式***：“输入无效。”或“他正在休息。” 或“他正在工作。”
+ int main() 
+
+{
+	while(1){
+	
+	
+	
+	
+	int year=1990,month=-1,day=-1,verbool=0;
+	int pastday=0,mday=0;
+	while(1)
+	{
+	scanf("%4d-%2d-%2d",&year,&month,&day);
+	getchar();
+	verbool = verData(year,month,day);
+	if (verbool==1)break;
+	}
+	
+	printf("你输入的日期是%d年%d月%d日\n",year,month,day);
+	pastday=caData(year,month,day);
+	printf("据1990-01-01过了%d天",pastday);
+	mday=pastday%5;
+	if(mday<3&&mday>=0)
+	printf("\n今天他打鱼\n");
+	else
+	printf("\n今天他晒网\n"); 
+		
+	}
+return 0;
+}
+
+//检测输入日期是否合法 
+int verData(int verY,int verM,int verD)
+	{
+	int days[13] ={0,31,28,31,30,31,30,31,31,30,31,30,31};
+	if(verY<1990||verM<1||verM>12||verD>=days[verM])
+		{
+		printf("输入有误，请重新输入：\n");
+		return 0;
+		}
+	else
+		{
+
+		return 1;
+		}
+	}
+	
+	//计算天数
+	
+	
+	int  caData (int caY,int caM,int caD)
+	{
+		int i=0,k=1;
+		int year=0;
+		int days[13] ={0,31,28,31,30,31,30,31,31,30,31,30,31};
+	//计算1990年1月1日到指定年份的1月1日天数		
+		for (year=1990;year<caY;year++) 
+		{
+			if((year%400==0)||(year%100!=0&&year%4==0))//闰年 
+			{
+				i+=366;
+		 	}else{
+			 	i+=365;
+		 	 }
+		}
+	//计算指定年份日期到当年1-1天数
+	//月份天数 
+		for(k=1;k<caM;k++)
+		{
+			if((year%400==0)||(year%100!=0&&year%4==0)&&(k=2))
+			i+=29;
+			else{
+			i+=days[k];
+			}
+		}	
+		i+=caD-1;
+		return i;
+		
+		
+	
+	}
+	
+//
+//失败品，失败品，失败品，失败品 
+
+//检测输入日期是否合法 
+//int verData(int verY,int verM,int verD)
+//	{
+//		if (verY<1990||verM<1||verM>12||verD<1||verD>31)//取值范围 
+//		return 0; 
+//		else if((verY%400==0)||(verY%100!=0&&verY%4==0)&&verM==2&&verD>29)//润年2月取值 
+//		return 0;
+//		else if(verY%4!=0&&verM==2&&verD>28) // 平年二月取值 
+//		return 0;
+//		else if (verY%4!=0&&verM<7&&verM%2==0&&verD>30)//是否31日 
+//		return 0;
+//		else if(verY%4!=0&&verM>7&&verM%2!=0&&verD>30)//是否31日 
+//		return 0;
+//		else
+//		return 1;
+//		 
+//	}
+//	
+//	int    caData (int caY,int caM,int caD)
+//	{
+//		int i=0;
+//		int year=0,month=0,day=0;
+//计算1990年1月1日到指定年份的1月1日天数		
+//	for (year=1990;year<caY;year++) 
+//	{
+//		for(month=1;month<12;month++)
+//		{
+//			for(day=1;day<31;day++)
+//			{
+//					if (year%400==0year%4==0&&month==2&&day>29)//润年2月取值 
+//						;
+//						else if(year%4!=0&&month==2&&day>28) // 平年二月取值 
+//						;
+//						else if (year%4!=0&&month<7&&month%2==0&&day>30)//是否31日 
+//						;
+//						else if(year%4!=0&&month>7&&month%2!=0&&day>30)//是否31日 
+//						;
+//						else
+//						i++;
+//			}
+//		}
+//	}
+//	
+//	//计算指定年份日期到当年1-1天数
+//	 
+//		return i;
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
